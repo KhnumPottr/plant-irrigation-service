@@ -1,0 +1,469 @@
+[{
+  "_id": {
+    "$oid": "61fa3493740427a13b291ffc"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:51.648Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa3494740427a13b291ffe"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:52.624Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa3495740427a13b292000"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:53.629Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa3496740427a13b292003"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:54.637Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa3497740427a13b292026"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:55.640Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa3498740427a13b29202d"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:56.646Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa3499740427a13b29203a"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:57.651Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa349a740427a13b29203f"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:58.657Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa349b740427a13b292044"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 3,
+  "dateReceived": {
+    "$date": "2022-02-02T18:36:59.662Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa349c740427a13b292046"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 5,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:00.668Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa349d740427a13b29204a"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 7,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:01.673Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa349e740427a13b29204c"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 10,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:02.678Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa349f740427a13b29204e"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 16,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:03.684Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a0740427a13b292051"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 22,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:04.689Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a1740427a13b29205a"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 26,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:05.696Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a2740427a13b292060"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 32,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:06.701Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a3740427a13b292065"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 32,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:07.706Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a4740427a13b29206a"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 32,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:08.711Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a5740427a13b29206c"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 32,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:09.716Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a6740427a13b29206e"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 38,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:10.723Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a7740427a13b292072"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 43,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:11.728Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a8740427a13b292077"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 49,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:12.740Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34a9740427a13b292079"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 53,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:13.739Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34aa740427a13b29207f"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 55,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:14.744Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34ab740427a13b292088"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 56,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:15.750Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34ac740427a13b29208e"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 59,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:16.756Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34ad740427a13b292094"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 61,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:17.760Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34ae740427a13b292096"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 69,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:18.766Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34af740427a13b292098"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 68,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:19.772Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b0740427a13b29209f"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 68,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:20.777Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b1740427a13b2920aa"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 62,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:21.788Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b2740427a13b2920ac"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 54,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:22.789Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b3740427a13b2920b4"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 47,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:23.799Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b4740427a13b2920b7"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 39,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:24.799Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b5740427a13b2920c0"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 31,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:25.804Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b6740427a13b2920c9"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 24,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:26.808Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b7740427a13b2920ce"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 16,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:27.815Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b8740427a13b2920d3"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 9,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:28.819Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34b9740427a13b2920d8"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:29.824Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34ba740427a13b2920dd"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:30.830Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34bb740427a13b2920e4"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:31.836Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34bc740427a13b2920ec"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:32.842Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34bd740427a13b2920f1"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:33.846Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34be740427a13b2920f6"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:34.858Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34bf740427a13b2920ff"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:35.857Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34c0740427a13b292106"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:36.862Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34c1740427a13b292108"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:37.869Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34c2740427a13b29210a"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:38.875Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34c3740427a13b29210c"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:39.881Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34c4740427a13b292111"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:40.885Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34c5740427a13b292115"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:41.891Z"
+  }
+},{
+  "_id": {
+    "$oid": "61fa34c6740427a13b292117"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 1,
+  "dateReceived": {
+    "$date": "2022-02-02T18:37:42.896Z"
+  }
+}]
