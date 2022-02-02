@@ -1,7 +1,7 @@
 package com.khnumpottr.plantirrigationservice.dao
 
-import com.khnumpottr.plantirrigationservice.domain.DataMessage
+import com.khnumpottr.plantirrigationservice.domain.IrrigationData
 
 interface MoistureReadingDAO {
-    fun insert(data: DataMessage)
+    fun insert(data: IrrigationData)
 }

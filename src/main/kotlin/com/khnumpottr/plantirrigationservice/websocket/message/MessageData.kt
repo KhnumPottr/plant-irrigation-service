@@ -1,14 +1,14 @@
-package com.khnumpottr.plantirrigationservice.domain
+package com.khnumpottr.plantirrigationservice.websocket.message
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 
 @JsonDeserialize
-data class DataMessage(
+data class MessageData(
     @JsonProperty("nodeName")
     val nodeName: String,
     @JsonProperty("messageType")
     val messageType: String,
-    @JsonProperty("message")
-    val message: String
+    @JsonProperty("payload")
+    val payload: String
 )
