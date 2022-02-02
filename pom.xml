@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.khnumpottr</groupId>
-	<artifactId>plant-irrigation-service</artifactId>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.khnumpottr</groupId>
+    <artifactId>plant-irrigation-service</artifactId>
 
-	<version>0.0.1-SNAPSHOT</version>
-	<name>plant-irrigation-service</name>
-	<description>plant-irrigation-service</description>
-	<properties>
-		<java.version>11</java.version>
-		<kotlin.version>1.6.10</kotlin.version>
-		<start-class>com.khnumpottr.plantirrigationservice.PlantIrrigationServiceApplicationKt</start-class>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.module</groupId>
-			<artifactId>jackson-module-kotlin</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.projectreactor.kotlin</groupId>
-			<artifactId>reactor-kotlin-extensions</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-reflect</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlinx</groupId>
-			<artifactId>kotlinx-coroutines-reactor</artifactId>
-		</dependency>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>plant-irrigation-service</name>
+    <description>plant-irrigation-service</description>
+    <properties>
+        <java.version>11</java.version>
+        <kotlin.version>1.6.10</kotlin.version>
+        <start-class>com.khnumpottr.plantirrigationservice.PlantIrrigationServiceApplicationKt</start-class>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor.kotlin</groupId>
+            <artifactId>reactor-kotlin-extensions</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-reactor</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
@@ -62,60 +62,76 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
-			<groupId>com.expediagroup</groupId>
-			<artifactId>graphql-kotlin-spring-server</artifactId>
-			<version>5.3.2</version>
-		</dependency>
+        <dependency>
+            <groupId>com.expediagroup</groupId>
+            <artifactId>graphql-kotlin-spring-server</artifactId>
+            <version>5.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.10.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.2</version>
+        </dependency>
     </dependencies>
 
-	<build>
-		<sourceDirectory>src/main/kotlin</sourceDirectory>
-		<testSourceDirectory>src/test/kotlin</testSourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.6.3</version>
-				<configuration>
-					<fork>true</fork>
-					<mainClass>${start-class}</mainClass>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-assembly-plugin</artifactId>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<phase>package</phase>-->
-<!--						<goals>-->
-<!--							<goal>single</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<archive>-->
-<!--								<manifest>-->
-<!--									<mainClass>-->
-<!--										com.khnumpottr.plantirrigationservice.PlantIrrigationServiceApplicationKt-->
-<!--									</mainClass>-->
-<!--								</manifest>-->
-<!--							</archive>-->
-<!--							<descriptorRefs>-->
-<!--								<descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--							</descriptorRefs>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
-			<plugin>
-				<groupId>org.jetbrains.kotlin</groupId>
-				<artifactId>kotlin-maven-plugin</artifactId>
+    <build>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version>
+                <configuration>
+                    <fork>true</fork>
+                    <mainClass>${start-class}</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--			<plugin>-->
+            <!--				<groupId>org.apache.maven.plugins</groupId>-->
+            <!--				<artifactId>maven-assembly-plugin</artifactId>-->
+            <!--				<executions>-->
+            <!--					<execution>-->
+            <!--						<phase>package</phase>-->
+            <!--						<goals>-->
+            <!--							<goal>single</goal>-->
+            <!--						</goals>-->
+            <!--						<configuration>-->
+            <!--							<archive>-->
+            <!--								<manifest>-->
+            <!--									<mainClass>-->
+            <!--										com.khnumpottr.plantirrigationservice.PlantIrrigationServiceApplicationKt-->
+            <!--									</mainClass>-->
+            <!--								</manifest>-->
+            <!--							</archive>-->
+            <!--							<descriptorRefs>-->
+            <!--								<descriptorRef>jar-with-dependencies</descriptorRef>-->
+            <!--							</descriptorRefs>-->
+            <!--						</configuration>-->
+            <!--					</execution>-->
+            <!--				</executions>-->
+            <!--			</plugin>-->
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
                 <executions>
                     <execution>
@@ -134,23 +150,23 @@
                     </execution>
                 </executions>
                 <configuration>
-					<args>
-						<arg>-Xjsr305=strict</arg>
-					</args>
-					<compilerPlugins>
-						<plugin>spring</plugin>
-					</compilerPlugins>
+                    <args>
+                        <arg>-Xjsr305=strict</arg>
+                    </args>
+                    <compilerPlugins>
+                        <plugin>spring</plugin>
+                    </compilerPlugins>
                     <jvmTarget>1.8</jvmTarget>
                 </configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-maven-allopen</artifactId>
-						<version>${kotlin.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-		</plugins>
-	</build>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
