@@ -2,6 +2,7 @@ package com.khnumpottr.plantirrigationservice.websocket.handler
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.khnumpottr.plantirrigationservice.dao.mongo.MongoMoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.DataMessage
 import org.springframework.web.socket.CloseStatus
 import org.springframework.web.socket.TextMessage
@@ -10,6 +11,8 @@ import org.springframework.web.socket.handler.TextWebSocketHandler
 import java.util.concurrent.CopyOnWriteArrayList
 
 class DataHandler : TextWebSocketHandler() {
+
+    val mongo = MongoMoistureReadingDAO()
 
     var sessions: MutableList<WebSocketSession> = CopyOnWriteArrayList()
 
@@ -23,7 +26,7 @@ class DataHandler : TextWebSocketHandler() {
 
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         val data = ObjectMapper().readValue<DataMessage>(message.payload)
-        println(data)
-        //TODO(Store Data and push to the frontend)
+        mongo.insert(data)
+        //TODO(push to the frontend)
     }
 }
