@@ -1,4 +1,4 @@
-package com.khnumpottr.plantirrigationservice.websocket.message
+package com.khnumpottr.plantirrigationservice.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
