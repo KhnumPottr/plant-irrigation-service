@@ -7,7 +7,6 @@ import jdk.jfr.Percentage
 import java.time.LocalDateTime
 
 data class IrrigationData(
-    val nodeName: String,
     val moisturePercentage: Int,
     val dateReceived: LocalDateTime = LocalDateTime.now()
 )
