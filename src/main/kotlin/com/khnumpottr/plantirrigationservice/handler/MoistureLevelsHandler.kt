@@ -1,26 +1,24 @@
 package com.khnumpottr.plantirrigationservice.handler
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.khnumpottr.plantirrigationservice.dao.mongo.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.socket.CloseStatus
-import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession
 import org.springframework.web.socket.handler.TextWebSocketHandler
 
 
 class MoistureLevelsHandler @Autowired constructor(private val service: MoistureLevelService) : TextWebSocketHandler() {
-    val mongo = MoistureReadingDAO()
+    val moistureReadingDAO = MoistureReadingDAO()
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
         service.addWebSocketSession(session)
-        println(session)
-        val initialMoistureList = mongo.findAllMoisture(120)
-        val message = TextMessage(jacksonObjectMapper().writeValueAsString(initialMoistureList))
-        println(message)
-        session.sendMessage(message)
+        val nodes = service.getActiveNodes()
+        service.reportInitialMoistureLevel(session.id)
+//        val message = TextMessage(jacksonObjectMapper().writeValueAsString(initialMoistureList))
+//        println(message)
+//        session.sendMessage(message)
 
         // Create singleton cache system for moisture levels
 

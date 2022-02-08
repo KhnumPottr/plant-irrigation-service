@@ -4,7 +4,6 @@ import com.khnumpottr.plantirrigationservice.domain.IrrigationData
 import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.domain.NodeMoistureLevels
 import java.lang.Integer.parseInt
-import java.time.LocalDateTime
 
 
 object AllMoistureLevelCache {
@@ -25,7 +24,7 @@ object AllMoistureLevelCache {
                 NodeMoistureLevels(
                     nodeName = messageData.nodeName,
                     levels = listOf(
-                        IrrigationData(moisturePercentage = parseInt(messageData.payload))
+                        IrrigationData(moisturePercentage = parseInt(messageData.payload.toString()))
                     )
                 )
             )
@@ -33,7 +32,7 @@ object AllMoistureLevelCache {
             levels.forEachIndexed { index, data ->
                 if (messageData.nodeName == data.nodeName) {
                     levels[index] =
-                        data.copy(levels = listOf(IrrigationData(moisturePercentage = parseInt(messageData.payload))))
+                        data.copy(levels = listOf(IrrigationData(moisturePercentage = parseInt(messageData.payload.toString()))))
                 }
             }
         }

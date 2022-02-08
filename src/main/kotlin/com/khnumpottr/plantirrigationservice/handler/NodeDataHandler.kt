@@ -2,7 +2,6 @@ package com.khnumpottr.plantirrigationservice.handler
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.khnumpottr.plantirrigationservice.domain.IrrigationData
 import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
@@ -12,8 +11,6 @@ import org.springframework.web.socket.CloseStatus
 import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession
 import org.springframework.web.socket.handler.TextWebSocketHandler
-import java.lang.Integer.parseInt
-import java.util.concurrent.CopyOnWriteArrayList
 
 class NodeDataHandler @Autowired constructor(private val service: MoistureLevelService) : TextWebSocketHandler() {
 
@@ -23,18 +20,20 @@ class NodeDataHandler @Autowired constructor(private val service: MoistureLevelS
 
     override fun afterConnectionClosed(session: WebSocketSession, closeStatus: CloseStatus) {
         service.removeWebSocketSession(session)
+        service.removeDataNode(session.id)
     }
 
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         val data = ObjectMapper().readValue<MessageData>(message.payload)
-        when(MessageTypes.get(data.messageType)){
+        when (data.messageType) {
             MessageTypes.NEW_NODE -> {
                 LOG.info { "New node connected ${data.nodeName} - ${session.localAddress}" }
+                service.addDataNode(data.nodeName, session.id)
             }
             MessageTypes.DATA -> {
                 service.reportMoistureLevel(data)
             }
-            MessageTypes.UNKNOWN -> {
+            else -> {
                 LOG.error { "Message payload unknown, unable to process" }
             }
         }

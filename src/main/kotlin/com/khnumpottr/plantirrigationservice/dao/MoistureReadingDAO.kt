@@ -1,7 +1,7 @@
 package com.khnumpottr.plantirrigationservice.dao.mongo
 
-import com.khnumpottr.plantirrigationservice.domain.IrrigationData
 import com.khnumpottr.plantirrigationservice.domain.MessageData
+import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import org.bson.codecs.pojo.annotations.BsonCreator
 import org.bson.codecs.pojo.annotations.BsonProperty
 import org.litote.kmongo.*
@@ -14,19 +14,20 @@ import java.time.LocalDateTime
 
 class MoistureReadingDAO {
 
-    private final val client = KMongo.createClient()
-    private final val database = client.getDatabase("plant-irrigation-service")
+    private val client = KMongo.createClient()
+    private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoMessageData>("moisture_reading")
 
     fun insert(messageData: MessageData) {
         collection.insertOne(MongoMessageData(messageData))
     }
 
-//    fun findAllMoisture(limit: Int): List<IrrigationData> {
-        //TODO
-
-//        return collection.find().sort(descending(IrrigationData::dateReceived)).limit(limit).toList()
-//    }
+    fun findAllMoisture(nodeName: String): List<MessageData> {
+        return collection.find(and(MongoMessageData::nodeName eq nodeName))
+            .sort(descending(MongoMessageData::dateReceived)).limit(1000)
+            .map(MongoMessageData::build)
+            .toList()
+    }
 
 }
 
@@ -38,9 +39,16 @@ class MongoMessageData @BsonCreator constructor(
     @BsonProperty("dateReceived")
     val dateReceived: LocalDateTime,
 ) {
-    constructor(messageData: MessageData) : this (
+    constructor(messageData: MessageData) : this(
         nodeName = messageData.nodeName,
-        moisturePercentage = parseInt(messageData.payload),
+        moisturePercentage = parseInt(messageData.payload.toString()),
         dateReceived = LocalDateTime.now()
+    )
+
+    fun build(): MessageData = MessageData(
+        nodeName = nodeName,
+        payload = moisturePercentage,
+        messageType = MessageTypes.DATA,
+        dateReceived = dateReceived
     )
 }
