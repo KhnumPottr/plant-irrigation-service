@@ -1,9 +1,12 @@
 package com.khnumpottr.plantirrigationservice.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.khnumpottr.plantirrigationservice.dao.mongo.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.mongo.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.IrrigationData
 import com.khnumpottr.plantirrigationservice.domain.MessageData
+import com.khnumpottr.plantirrigationservice.domain.NodeData
+import com.khnumpottr.plantirrigationservice.domain.NodeMoistureLevels
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import mu.KotlinLogging
 import org.springframework.web.socket.TextMessage
@@ -16,6 +19,7 @@ import java.lang.Integer.parseInt
 class MoistureLevelService {
 
     private val moistureReadingDAO = MoistureReadingDAO()
+    private val connectedNodesDAO = ConnectedNodesDAO()
     private var sessionMap: HashMap<String, WebSocketSession> = HashMap<String, WebSocketSession>()
     private val activeNodes: HashMap<String, String> = HashMap<String, String>()
 
@@ -34,6 +38,7 @@ class MoistureLevelService {
     @Synchronized
     fun addDataNode(nodeName: String, sessionId: String) {
         LOG.info { "Adding new Node: $nodeName" }
+        connectedNodesDAO.insert(NodeData(nodeName))
         activeNodes[sessionId] = nodeName
     }
 
@@ -49,12 +54,16 @@ class MoistureLevelService {
     }
 
     @Synchronized
-    fun reportInitialMoistureLevel(sessionId: String): MessageData? {
-        val node = activeNodes[sessionId] ?: return null
-        val levels: ArrayList<IrrigationData> = ArrayList()
-        val historicLevels = moistureReadingDAO.findAllMoisture(node)
-        historicLevels.forEach { levels.add(IrrigationData(parseInt(it.payload.toString()), it.dateReceived)) }
-        return MessageData(nodeName = node, messageType = MessageTypes.ARRAY_DATA, payload = levels)
+    fun reportInitialMoistureLevel(): List<MessageData> {
+        val messages: ArrayList<MessageData> = ArrayList()
+        val nodes = connectedNodesDAO.findAllNodes()
+        nodes.forEach { node ->
+            val levels: ArrayList<IrrigationData> = ArrayList()
+            val historicLevels = moistureReadingDAO.findAllMoisture(node)
+            historicLevels.forEach { levels.add(IrrigationData(parseInt(it.payload.toString()), it.dateReceived)) }
+            messages.add(MessageData(nodeName = node, messageType = MessageTypes.ARRAY_DATA, payload = levels))
+        }
+        return messages
     }
 
     @Synchronized
@@ -65,7 +74,6 @@ class MoistureLevelService {
                 val tm = TextMessage(jacksonObjectMapper().writeValueAsString(messageData))
                 try {
                     session.value.sendMessage(tm)
-                    println("Sending")
                 } catch (e: IOException) {
                     // After sending fails, you need to continue broadcasting to other people, so try to catch exceptions in the loop
                 }

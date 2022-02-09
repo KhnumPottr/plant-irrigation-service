@@ -14,25 +14,13 @@ class MoistureLevelsHandler @Autowired constructor(private val service: Moisture
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
         service.addWebSocketSession(session)
-        val nodes = service.getActiveNodes()
-        service.reportInitialMoistureLevel(session.id)
-//        val message = TextMessage(jacksonObjectMapper().writeValueAsString(initialMoistureList))
-//        println(message)
-//        session.sendMessage(message)
-
-        // Create singleton cache system for moisture levels
-
-        // Once
-        // Query database and return 120 of the last records
-
-        // Continuously
-        // Save/update most recent levels to cache
-        // Save moisture levels to database
+        service.reportInitialMoistureLevel()
+        LOG.info { "Client Connected" }
     }
 
     override fun afterConnectionClosed(session: WebSocketSession, closeStatus: CloseStatus) {
         service.removeWebSocketSession(session)
-        LOG.info { "Removing Session" }
+        LOG.info { "Client Disconnected" }
     }
 
 //    override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {}

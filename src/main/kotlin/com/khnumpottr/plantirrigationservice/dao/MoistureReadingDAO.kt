@@ -23,8 +23,13 @@ class MoistureReadingDAO {
     }
 
     fun findAllMoisture(nodeName: String): List<MessageData> {
-        return collection.find(and(MongoMessageData::nodeName eq nodeName))
-            .sort(descending(MongoMessageData::dateReceived)).limit(1000)
+        return collection.find(
+            and(
+                MongoMessageData::nodeName eq nodeName,
+                MongoMessageData::dateReceived gte LocalDateTime.now().minusDays(5)
+            )
+        )
+            .sort(descending(MongoMessageData::dateReceived))
             .map(MongoMessageData::build)
             .toList()
     }
