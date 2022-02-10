@@ -1,469 +1,307 @@
 [{
   "_id": {
-    "$oid": "61fa3493740427a13b291ffc"
+    "$oid": "6203652af0297d97c167560b"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "moisturePercentage": 41,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:51.648Z"
+    "$date": "2022-02-09T17:54:30.890Z"
   }
 },{
   "_id": {
-    "$oid": "61fa3494740427a13b291ffe"
+    "$oid": "6203652bf0297d97c167560d"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "moisturePercentage": 27,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:52.624Z"
+    "$date": "2022-02-09T17:54:31.391Z"
   }
 },{
   "_id": {
-    "$oid": "61fa3495740427a13b292000"
+    "$oid": "6203652ef0297d97c167560f"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 54,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:53.629Z"
+    "$date": "2022-02-09T17:54:34.501Z"
   }
 },{
   "_id": {
-    "$oid": "61fa3496740427a13b292003"
+    "$oid": "6203652ef0297d97c1675611"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 42,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:54.637Z"
+    "$date": "2022-02-09T17:54:35.006Z"
   }
 },{
   "_id": {
-    "$oid": "61fa3497740427a13b292026"
+    "$oid": "6203733bf0297d97c1676bd0"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "moisturePercentage": 25,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:55.640Z"
+    "$date": "2022-02-09T18:54:31.805Z"
   }
 },{
   "_id": {
-    "$oid": "61fa3498740427a13b29202d"
+    "$oid": "6203733ff0297d97c1676bd6"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 40,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:56.646Z"
+    "$date": "2022-02-09T18:54:35.491Z"
   }
 },{
   "_id": {
-    "$oid": "61fa3499740427a13b29203a"
+    "$oid": "6203814bf0297d97c167818a"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "moisturePercentage": 25,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:57.651Z"
+    "$date": "2022-02-09T19:54:31.534Z"
   }
 },{
   "_id": {
-    "$oid": "61fa349a740427a13b29203f"
+    "$oid": "6203814ff0297d97c1678197"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 40,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:58.657Z"
+    "$date": "2022-02-09T19:54:35.158Z"
   }
 },{
   "_id": {
-    "$oid": "61fa349b740427a13b292044"
+    "$oid": "62038f5bf0297d97c167974e"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 3,
+  "moisturePercentage": 25,
   "dateReceived": {
-    "$date": "2022-02-02T18:36:59.662Z"
+    "$date": "2022-02-09T20:54:32.054Z"
   }
 },{
   "_id": {
-    "$oid": "61fa349c740427a13b292046"
+    "$oid": "62038f5ff0297d97c1679750"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 5,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 40,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:00.668Z"
+    "$date": "2022-02-09T20:54:35.741Z"
   }
 },{
   "_id": {
-    "$oid": "61fa349d740427a13b29204a"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 7,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:01.673Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa349e740427a13b29204c"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 10,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:02.678Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa349f740427a13b29204e"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 16,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:03.684Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34a0740427a13b292051"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 22,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:04.689Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34a1740427a13b29205a"
+    "$oid": "62039d6bf0297d97c167ad0a"
   },
   "nodeName": "esp8622_harry",
   "moisturePercentage": 26,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:05.696Z"
+    "$date": "2022-02-09T21:54:31.687Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34a2740427a13b292060"
+    "$oid": "62039d6ff0297d97c167ad15"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 32,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 40,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:06.701Z"
+    "$date": "2022-02-09T21:54:35.287Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34a3740427a13b292065"
+    "$oid": "62043493f0297d97c167c7a6"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 32,
+  "moisturePercentage": 44,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:07.706Z"
+    "$date": "2022-02-10T08:39:31.127Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34a4740427a13b29206a"
+    "$oid": "62043493f0297d97c167c7a8"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 32,
+  "moisturePercentage": 30,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:08.711Z"
+    "$date": "2022-02-10T08:39:31.629Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34a5740427a13b29206c"
+    "$oid": "620434a5f0297d97c167c7c7"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 32,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:09.716Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34a6740427a13b29206e"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 38,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:10.723Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34a7740427a13b292072"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 43,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:11.728Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34a8740427a13b292077"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 49,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:12.740Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34a9740427a13b292079"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 53,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:13.739Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34aa740427a13b29207f"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 55,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:14.744Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34ab740427a13b292088"
-  },
-  "nodeName": "esp8622_harry",
+  "nodeName": "esp8622_jessica",
   "moisturePercentage": 56,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:15.750Z"
+    "$date": "2022-02-10T08:39:49.870Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34ac740427a13b29208e"
+    "$oid": "620434a6f0297d97c167c7c9"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 59,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 43,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:16.756Z"
+    "$date": "2022-02-10T08:39:50.374Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34ad740427a13b292094"
+    "$oid": "620450b4f0297d97c167f336"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 61,
+  "moisturePercentage": 29,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:17.760Z"
+    "$date": "2022-02-10T10:39:31.988Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34ae740427a13b292096"
+    "$oid": "620450c6f0297d97c167f34e"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 69,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 41,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:18.766Z"
+    "$date": "2022-02-10T10:39:50.724Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34af740427a13b292098"
+    "$oid": "62045ec4f0297d97c16808f4"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 68,
+  "moisturePercentage": 29,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:19.772Z"
+    "$date": "2022-02-10T11:39:32.064Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b0740427a13b29209f"
+    "$oid": "62045ed6f0297d97c1680912"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 68,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 41,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:20.777Z"
+    "$date": "2022-02-10T11:39:50.804Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b1740427a13b2920aa"
+    "$oid": "62046cd4f0297d97c1681eb8"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 62,
+  "moisturePercentage": 29,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:21.788Z"
+    "$date": "2022-02-10T12:39:32.144Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b2740427a13b2920ac"
+    "$oid": "62046ce6f0297d97c1681ed6"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 54,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 40,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:22.789Z"
+    "$date": "2022-02-10T12:39:50.883Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b3740427a13b2920b4"
+    "$oid": "62047ae4f0297d97c1683474"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 47,
+  "moisturePercentage": 29,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:23.799Z"
+    "$date": "2022-02-10T13:39:32.225Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b4740427a13b2920b7"
+    "$oid": "62047af6f0297d97c168348d"
+  },
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 40,
+  "dateReceived": {
+    "$date": "2022-02-10T13:39:50.965Z"
+  }
+},{
+  "_id": {
+    "$oid": "620488f4f0297d97c1684a33"
   },
   "nodeName": "esp8622_harry",
+  "moisturePercentage": 29,
+  "dateReceived": {
+    "$date": "2022-02-10T14:39:32.429Z"
+  }
+},{
+  "_id": {
+    "$oid": "62048907f0297d97c1684a51"
+  },
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 40,
+  "dateReceived": {
+    "$date": "2022-02-10T14:39:51.044Z"
+  }
+},{
+  "_id": {
+    "$oid": "62049704f0297d97c1685ff7"
+  },
+  "nodeName": "esp8622_harry",
+  "moisturePercentage": 29,
+  "dateReceived": {
+    "$date": "2022-02-10T15:39:32.505Z"
+  }
+},{
+  "_id": {
+    "$oid": "62049717f0297d97c1686015"
+  },
+  "nodeName": "esp8622_jessica",
   "moisturePercentage": 39,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:24.799Z"
+    "$date": "2022-02-10T15:39:51.243Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b5740427a13b2920c0"
+    "$oid": "6204a514f0297d97c16875b2"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 31,
+  "moisturePercentage": 28,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:25.804Z"
+    "$date": "2022-02-10T16:39:32.282Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b6740427a13b2920c9"
+    "$oid": "6204a527f0297d97c16875cb"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 24,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 39,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:26.808Z"
+    "$date": "2022-02-10T16:39:51.417Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b7740427a13b2920ce"
+    "$oid": "6204b324f0297d97c1688b71"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 16,
+  "moisturePercentage": 29,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:27.815Z"
+    "$date": "2022-02-10T17:39:32.452Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b8740427a13b2920d3"
+    "$oid": "6204b337f0297d97c1688b8f"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 9,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 39,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:28.819Z"
+    "$date": "2022-02-10T17:39:51.208Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34b9740427a13b2920d8"
+    "$oid": "6204c134f0297d97c168a135"
   },
   "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
+  "moisturePercentage": 29,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:29.824Z"
+    "$date": "2022-02-10T18:39:32.422Z"
   }
 },{
   "_id": {
-    "$oid": "61fa34ba740427a13b2920dd"
+    "$oid": "6204c147f0297d97c168a153"
   },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
+  "nodeName": "esp8622_jessica",
+  "moisturePercentage": 39,
   "dateReceived": {
-    "$date": "2022-02-02T18:37:30.830Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34bb740427a13b2920e4"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:31.836Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34bc740427a13b2920ec"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:32.842Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34bd740427a13b2920f1"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:33.846Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34be740427a13b2920f6"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:34.858Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34bf740427a13b2920ff"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:35.857Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34c0740427a13b292106"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:36.862Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34c1740427a13b292108"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:37.869Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34c2740427a13b29210a"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:38.875Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34c3740427a13b29210c"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:39.881Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34c4740427a13b292111"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:40.885Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34c5740427a13b292115"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:41.891Z"
-  }
-},{
-  "_id": {
-    "$oid": "61fa34c6740427a13b292117"
-  },
-  "nodeName": "esp8622_harry",
-  "moisturePercentage": 1,
-  "dateReceived": {
-    "$date": "2022-02-02T18:37:42.896Z"
+    "$date": "2022-02-10T18:39:51.575Z"
   }
 }]
