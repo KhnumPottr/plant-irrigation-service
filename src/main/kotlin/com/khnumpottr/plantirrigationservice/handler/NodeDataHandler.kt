@@ -16,17 +16,21 @@ import org.springframework.web.socket.handler.TextWebSocketHandler
 class NodeDataHandler @Autowired constructor(private val service: MoistureLevelService) : TextWebSocketHandler() {
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
-//        service.addWebSocketSession(session)
+        LOG.info { "Node Connected" }
     }
 
     override fun afterConnectionClosed(session: WebSocketSession, closeStatus: CloseStatus) {
-//        service.removeWebSocketSession(session)
+        LOG.info { "Node Disconnected" }
         service.removeDataNode(session.id)
     }
 
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         val data = ObjectMapper().readValue<NodeMessage>(message.payload)
-        val dataToMessage = MessageData(nodeName = data.nodeName, messageType = MessageTypes.get(data.messageType), payload = data.payload)
+        val dataToMessage = MessageData(
+            nodeName = data.nodeName,
+            messageType = MessageTypes.get(data.messageType),
+            payload = data.payload
+        )
         when (dataToMessage.messageType) {
             MessageTypes.NEW_NODE -> {
                 LOG.info { "New node connected ${data.nodeName} - ${session.localAddress}" }

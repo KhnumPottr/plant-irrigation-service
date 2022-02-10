@@ -1,10 +1,14 @@
 package com.khnumpottr.plantirrigationservice.handler
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.khnumpottr.plantirrigationservice.dao.mongo.MoistureReadingDAO
+import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.socket.CloseStatus
+import org.springframework.web.socket.TextMessage
+import org.springframework.web.socket.WebSocketMessage
 import org.springframework.web.socket.WebSocketSession
 import org.springframework.web.socket.handler.TextWebSocketHandler
 
@@ -14,7 +18,10 @@ class MoistureLevelsHandler @Autowired constructor(private val service: Moisture
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
         service.addWebSocketSession(session)
-        service.reportInitialMoistureLevel()
+        val messages = service.reportInitialMoistureLevel()
+        messages.forEach{
+            session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(it)))
+        }
         LOG.info { "Client Connected" }
     }
 
