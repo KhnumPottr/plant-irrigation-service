@@ -29,7 +29,7 @@ class MoistureReadingDAO {
                 MongoMessageData::dateReceived gte LocalDateTime.now().minusDays(5)
             )
         )
-            .sort(descending(MongoMessageData::dateReceived))
+            .sort(ascending(MongoMessageData::dateReceived))
             .map(MongoMessageData::build)
             .toList()
     }
