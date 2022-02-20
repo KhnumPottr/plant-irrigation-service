@@ -10,6 +10,6 @@ import java.time.LocalDateTime
 data class MessageData(
     val nodeName: String,
     val messageType: MessageTypes,
-    val payload: Any,
+    val payload: Any?,
     val dateReceived: LocalDateTime = LocalDateTime.now(),
 )

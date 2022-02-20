@@ -14,7 +14,7 @@ import java.time.LocalDateTime
 
 class MoistureReadingDAO {
 
-    private val client = KMongo.createClient()
+    private val client = KMongo.createClient("mongodb://192.168.1.16:27017")
     private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoMessageData>("moisture_reading")
 
@@ -22,7 +22,7 @@ class MoistureReadingDAO {
         collection.insertOne(MongoMessageData(messageData))
     }
 
-    fun findAllMoisture(nodeName: String): List<MessageData> {
+    fun findAllMoistureReports(nodeName: String): List<MessageData> {
         return collection.find(
             and(
                 MongoMessageData::nodeName eq nodeName,
@@ -32,6 +32,16 @@ class MoistureReadingDAO {
             .sort(ascending(MongoMessageData::dateReceived))
             .map(MongoMessageData::build)
             .toList()
+    }
+
+    fun findRecentReporting(nodeName: String): MessageData?{
+        return collection.find(and(
+            MongoMessageData::nodeName eq nodeName,
+            )
+        )
+            .sort(descending(MongoMessageData::dateReceived))
+            .map(MongoMessageData::build)
+            .first()
     }
 
 }

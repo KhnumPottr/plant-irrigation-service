@@ -1,23 +1,17 @@
-package com.khnumpottr.plantirrigationservice.dao.mongo
+package com.khnumpottr.plantirrigationservice.dao
 
-import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.domain.NodeData
-import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import org.bson.codecs.pojo.annotations.BsonCreator
-import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.codecs.pojo.annotations.BsonProperty
-import org.bson.types.ObjectId
 import org.litote.kmongo.*
 import org.springframework.stereotype.Component
-import java.lang.Integer.parseInt
-import java.time.LocalDateTime
 
 
 @Component
 
 class ConnectedNodesDAO {
 
-    private val client = KMongo.createClient()
+    private val client = KMongo.createClient("mongodb://192.168.1.16:27017")
     private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoNodeData>("connected_Nodes")
 
