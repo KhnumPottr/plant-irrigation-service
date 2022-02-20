@@ -1,12 +1,11 @@
 package com.khnumpottr.plantirrigationservice.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.khnumpottr.plantirrigationservice.dao.mongo.ConnectedNodesDAO
+import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.mongo.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.IrrigationData
 import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.domain.NodeData
-import com.khnumpottr.plantirrigationservice.domain.NodeMoistureLevels
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import mu.KotlinLogging
 import org.springframework.web.socket.TextMessage
@@ -54,14 +53,22 @@ class MoistureLevelService {
     }
 
     @Synchronized
+    fun getMoistureLevelHistory(nodeName: String): MessageData{
+        val levels: ArrayList<IrrigationData> = ArrayList()
+        val historicLevels = moistureReadingDAO.findAllMoistureReports(nodeName)
+        historicLevels.forEach { levels.add(IrrigationData(parseInt(it.payload.toString()), it.dateReceived)) }
+        return MessageData(nodeName = nodeName, messageType = MessageTypes.ARRAY_DATA, payload = levels)
+    }
+
+    @Synchronized
     fun reportInitialMoistureLevel(): List<MessageData> {
         val messages: ArrayList<MessageData> = ArrayList()
         val nodes = connectedNodesDAO.findAllNodes()
         nodes.forEach { node ->
-            val levels: ArrayList<IrrigationData> = ArrayList()
-            val historicLevels = moistureReadingDAO.findAllMoisture(node)
-            historicLevels.forEach { levels.add(IrrigationData(parseInt(it.payload.toString()), it.dateReceived)) }
-            messages.add(MessageData(nodeName = node, messageType = MessageTypes.ARRAY_DATA, payload = levels))
+            val levels = moistureReadingDAO.findRecentReporting(node)
+            if (levels != null) {
+                messages.add(MessageData(nodeName = node, messageType = MessageTypes.DATA, payload = levels.payload))
+            }
         }
         return messages
     }

@@ -1,6 +1,6 @@
 package com.khnumpottr.plantirrigationservice
 
-import com.khnumpottr.plantirrigationservice.handler.MoistureLevelsHandler
+import com.khnumpottr.plantirrigationservice.handler.WebClientHandler
 import com.khnumpottr.plantirrigationservice.handler.NodeDataHandler
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
 import org.springframework.context.annotation.Bean
@@ -19,7 +19,7 @@ class WebSocketConfig : WebSocketConfigurer {
 
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
         registry.addHandler(NodeDataHandler(service), "/nodeData").setAllowedOrigins("*")//.withSockJS()
-        registry.addHandler(MoistureLevelsHandler(service), "/moistureLevels").setAllowedOrigins("*")
+        registry.addHandler(WebClientHandler(service), "/moistureLevels").setAllowedOrigins("*")
     }
 
     @Bean
