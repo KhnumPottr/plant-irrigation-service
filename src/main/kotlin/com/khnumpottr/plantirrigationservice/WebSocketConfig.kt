@@ -19,7 +19,7 @@ class WebSocketConfig : WebSocketConfigurer {
 
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
         registry.addHandler(NodeDataHandler(service), "/nodeData").setAllowedOrigins("*")//.withSockJS()
-        registry.addHandler(WebClientHandler(service), "/moistureLevels").setAllowedOrigins("*")
+        registry.addHandler(WebClientHandler(service), "/clientData").setAllowedOrigins("*")
     }
 
     @Bean

@@ -10,5 +10,5 @@ data class NodeMessage(
     @JsonProperty("messageType")
     val messageType: String,
     @JsonProperty("payload")
-    val payload: Any,
+    val payload: Any?,
 )

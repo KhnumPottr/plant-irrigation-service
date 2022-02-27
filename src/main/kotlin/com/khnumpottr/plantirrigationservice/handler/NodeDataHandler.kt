@@ -25,19 +25,14 @@ class NodeDataHandler @Autowired constructor(private val service: MoistureLevelS
     }
 
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
-        val data = ObjectMapper().readValue<NodeMessage>(message.payload)
-        val dataToMessage = MessageData(
-            nodeName = data.nodeName,
-            messageType = MessageTypes.get(data.messageType),
-            payload = data.payload
-        )
-        when (dataToMessage.messageType) {
+        val data = MessageData.build(message)
+        when (data.messageType) {
             MessageTypes.NEW_NODE -> {
                 LOG.info { "New node connected ${data.nodeName} - ${session.localAddress}" }
                 service.addDataNode(data.nodeName, session.id)
             }
             MessageTypes.DATA -> {
-                service.reportMoistureLevel(dataToMessage)
+                service.reportMoistureLevel(data)
             }
             else -> {
                 LOG.error { "Message payload unknown, unable to process" }
