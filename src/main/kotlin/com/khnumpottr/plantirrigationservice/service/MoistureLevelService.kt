@@ -60,7 +60,6 @@ class MoistureLevelService {
         return MessageData(nodeName = nodeName, messageType = MessageTypes.ARRAY_DATA, payload = levels)
     }
 
-    @Synchronized
     fun reportInitialMoistureLevel(): List<MessageData> {
         val messages: ArrayList<MessageData> = ArrayList()
         val nodes = connectedNodesDAO.findAllNodes()
@@ -73,7 +72,6 @@ class MoistureLevelService {
         return messages
     }
 
-    @Synchronized
     fun reportMoistureLevel(messageData: MessageData) {
         moistureReadingDAO.insert(messageData)
         if (sessionMap.isNotEmpty()) {

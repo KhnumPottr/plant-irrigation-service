@@ -4,6 +4,7 @@ enum class MessageTypes {
     DATA,
     ARRAY_DATA,
     NEW_NODE,
+    IRRIGATION_ARRAY_DATA,
     UNKNOWN;
 
     companion object {
@@ -12,6 +13,7 @@ enum class MessageTypes {
                 "data" -> DATA
                 "array_data" -> ARRAY_DATA
                 "new_node" -> NEW_NODE
+                "irrigation_array_data" -> IRRIGATION_ARRAY_DATA
                 else -> UNKNOWN
             }
     }
