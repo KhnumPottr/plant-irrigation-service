@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 
 class ConnectedNodesDAO {
 
-    private val client = KMongo.createClient("mongodb://192.168.1.16:27017")
+    private val client = KMongo.createClient("mongodb://127.0.0.1:27017")
     private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoNodeData>("connected_Nodes")
 
