@@ -1,7 +1,7 @@
 package com.khnumpottr.plantirrigationservice.controller
 
 import com.pi4j.io.gpio.*
-import com.pi4j.io.gpio.RaspiPin.GPIO_07
+import com.pi4j.io.gpio.RaspiPin.GPIO_04
 import mu.KotlinLogging
 
 class PumpController {
@@ -16,7 +16,7 @@ class PumpController {
     ): GpioPinDigitalOutput { return controller.provisionDigitalOutputPin(provider, pin, name, state).apply(initializer)}
 
     private var pumpIsActive: Boolean = false;
-    private val output = digitalOutput(GPIO_07)
+    private val output = digitalOutput(GPIO_04)
 
     fun powerPump(moistureLevel:Int){
         if(moistureLevel < 15 && !pumpIsActive){
