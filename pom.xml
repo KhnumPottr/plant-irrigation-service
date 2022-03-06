@@ -11,7 +11,7 @@
     <groupId>com.khnumpottr</groupId>
     <artifactId>plant-irrigation-service</artifactId>
 
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>plant-irrigation-service</name>
     <description>plant-irrigation-service</description>
     <properties>
@@ -120,30 +120,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--			<plugin>-->
-            <!--				<groupId>org.apache.maven.plugins</groupId>-->
-            <!--				<artifactId>maven-assembly-plugin</artifactId>-->
-            <!--				<executions>-->
-            <!--					<execution>-->
-            <!--						<phase>package</phase>-->
-            <!--						<goals>-->
-            <!--							<goal>single</goal>-->
-            <!--						</goals>-->
-            <!--						<configuration>-->
-            <!--							<archive>-->
-            <!--								<manifest>-->
-            <!--									<mainClass>-->
-            <!--										com.khnumpottr.plantirrigationservice.PlantIrrigationServiceApplicationKt-->
-            <!--									</mainClass>-->
-            <!--								</manifest>-->
-            <!--							</archive>-->
-            <!--							<descriptorRefs>-->
-            <!--								<descriptorRef>jar-with-dependencies</descriptorRef>-->
-            <!--							</descriptorRefs>-->
-            <!--						</configuration>-->
-            <!--					</execution>-->
-            <!--				</executions>-->
-            <!--			</plugin>-->
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>

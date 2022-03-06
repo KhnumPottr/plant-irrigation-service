@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  mongoDatabase:
+    image: mongo:4.4-rc
+    container_name: mongoDatabase
+    hostname: mongoDatabase
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    networks:
+      - main-network
+    command: ["--bind_ip", "0.0.0.0"]
+  plantIrrigationSerivce:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: plant-irrigation-service
+    container_name: PlantIrrigationService
+    hostname: websocket.dev.plant-irrigation-service
+    restart: on-failure
+    depends_on:
+      - mongoDatabase
+    links:
+      - mongoDatabase
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    networks:
+      main-network:
+        ipv4_address: 172.25.0.101
+networks:
+  main-network:
+      name: "PlantNetwork"
+      driver: bridge
+      ipam:
+        config:
+          - subnet: 172.25.0.0/24
