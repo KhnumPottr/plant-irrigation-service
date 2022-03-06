@@ -1,6 +1,7 @@
 package com.khnumpottr.plantirrigationservice.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.khnumpottr.plantirrigationservice.controller.PumpController
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.mongo.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.IrrigationData
@@ -19,8 +20,10 @@ class MoistureLevelService {
 
     private val moistureReadingDAO = MoistureReadingDAO()
     private val connectedNodesDAO = ConnectedNodesDAO()
+    private val pump = PumpController()
     private var sessionMap: HashMap<String, WebSocketSession> = HashMap<String, WebSocketSession>()
     private val activeNodes: HashMap<String, String> = HashMap<String, String>()
+
 
     @Synchronized
     fun addWebSocketSession(session: WebSocketSession) {
@@ -84,6 +87,11 @@ class MoistureLevelService {
                 }
             }
         }
+    }
+
+    fun triggerIrrigation(moistureLevel:Int){
+        LOG.info { moistureLevel }
+        pump.powerPump(moistureLevel)
     }
 
     companion object {

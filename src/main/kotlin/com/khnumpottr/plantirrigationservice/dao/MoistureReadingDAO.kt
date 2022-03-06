@@ -14,7 +14,7 @@ import java.time.LocalDateTime
 
 class MoistureReadingDAO {
 
-    private val client = KMongo.createClient("mongodb://mongoDatabase:27017")
+    private val client = KMongo.createClient()
     private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoMessageData>("moisture_reading")
 
