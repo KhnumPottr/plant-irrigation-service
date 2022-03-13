@@ -1,7 +1,6 @@
 package com.khnumpottr.plantirrigationservice.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.khnumpottr.plantirrigationservice.controller.PumpController
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.mongo.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.IrrigationData
@@ -20,9 +19,11 @@ class MoistureLevelService {
 
     private val moistureReadingDAO = MoistureReadingDAO()
     private val connectedNodesDAO = ConnectedNodesDAO()
-    private val pump = PumpController()
     private var sessionMap: HashMap<String, WebSocketSession> = HashMap<String, WebSocketSession>()
     private val activeNodes: HashMap<String, String> = HashMap<String, String>()
+
+    private var irrigationIsActive: Boolean = false
+    private var irrigationSession: WebSocketSession? = null
 
 
     @Synchronized
@@ -35,6 +36,16 @@ class MoistureLevelService {
     fun removeWebSocketSession(session: WebSocketSession) {
         val id = session.id
         sessionMap.remove(id) // Delete session
+    }
+
+    @Synchronized
+    fun connectIrrigationSession(session: WebSocketSession) {
+        irrigationSession = session
+    }
+
+    @Synchronized
+    fun disconnectIrrigationSession() {
+        irrigationSession = null
     }
 
     @Synchronized
@@ -56,7 +67,7 @@ class MoistureLevelService {
     }
 
     @Synchronized
-    fun getMoistureLevelHistory(nodeName: String): MessageData{
+    fun getMoistureLevelHistory(nodeName: String): MessageData {
         val levels: ArrayList<IrrigationData> = ArrayList()
         val historicLevels = moistureReadingDAO.findAllMoistureReports(nodeName)
         historicLevels.forEach { levels.add(IrrigationData(parseInt(it.payload.toString()), it.dateReceived)) }
@@ -89,9 +100,23 @@ class MoistureLevelService {
         }
     }
 
-    fun triggerIrrigation(moistureLevel:Int){
+    fun irrigationAutoToggle(moistureLevel: Int) {
         LOG.info { moistureLevel }
-        pump.powerPump(moistureLevel)
+        if (moistureLevel < 15 && !irrigationIsActive) {
+            LOG.info { "Powering ON Irrigation" }
+            irrigationIsActive = true
+            irrigationToggle(true)
+        } else if (moistureLevel > 60 && irrigationIsActive) {
+            LOG.info { "Powering OFF Irrigation" }
+            irrigationIsActive = false
+            irrigationToggle(false)
+        }
+    }
+
+    fun irrigationToggle(toggle:Boolean): Boolean{
+        irrigationIsActive = toggle
+        irrigationSession?.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(toggle)))
+        return irrigationIsActive
     }
 
     companion object {

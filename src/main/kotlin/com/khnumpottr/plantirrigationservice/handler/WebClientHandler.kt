@@ -34,12 +34,16 @@ class WebClientHandler @Autowired constructor(private val service: MoistureLevel
 
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         LOG.info { "Getting Message from client" }
-        LOG.info { message }
         val data = MessageData.build(message)
+        LOG.info { data }
         when (data.messageType) {
             MessageTypes.IRRIGATION_ARRAY_DATA -> {
                 val message = service.getMoistureLevelHistory(data.nodeName)
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))
+            }
+            MessageTypes.SWITCH -> {
+                val toggle = service.irrigationToggle(data.payload as Boolean)
+                session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(data.copy(payload = toggle))))
             }
             else -> {
                 LOG.error { "Message payload unknown, unable to process" }
