@@ -1,12 +1,9 @@
 package com.khnumpottr.plantirrigationservice.handler
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.khnumpottr.plantirrigationservice.dao.mongo.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.MessageData
-import com.khnumpottr.plantirrigationservice.domain.NodeMessage
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
+import com.khnumpottr.plantirrigationservice.service.ClientReportingService
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired

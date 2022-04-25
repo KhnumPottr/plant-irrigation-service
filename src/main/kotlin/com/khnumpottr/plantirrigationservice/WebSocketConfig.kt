@@ -1,6 +1,5 @@
 package com.khnumpottr.plantirrigationservice
 
-import com.khnumpottr.plantirrigationservice.handler.IrrigationHandler
 import com.khnumpottr.plantirrigationservice.handler.WebClientHandler
 import com.khnumpottr.plantirrigationservice.handler.NodeDataHandler
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
@@ -21,7 +20,6 @@ class WebSocketConfig : WebSocketConfigurer {
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
         registry.addHandler(NodeDataHandler(service), "/nodeData").setAllowedOrigins("*")//.withSockJS()
         registry.addHandler(WebClientHandler(service), "/clientData").setAllowedOrigins("*")
-        registry.addHandler(IrrigationHandler(service), "/irrigate").setAllowedOrigins("*")
     }
 
     @Bean
