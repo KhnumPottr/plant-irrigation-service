@@ -3,6 +3,7 @@ package com.khnumpottr.plantirrigationservice.handler
 import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
+import com.khnumpottr.plantirrigationservice.service.NodeReportingService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.socket.CloseStatus
@@ -29,7 +30,7 @@ class NodeDataHandler @Autowired constructor(private val service: MoistureLevelS
                 service.addDataNode(data.nodeName, session.id)
             }
             MessageTypes.DATA -> {
-                service.reportMoistureLevel(data)
+                service.reportMoistureLevel(session.id,data)
                 LOG.info { data.payload as Int }
                 service.irrigationAutoToggle(data.payload as Int)
             }

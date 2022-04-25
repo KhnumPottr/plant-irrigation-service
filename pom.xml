@@ -19,6 +19,8 @@
         <kotlin.version>1.6.10</kotlin.version>
         <pi4j.version>2.1.1</pi4j.version>
         <start-class>com.khnumpottr.plantirrigationservice.PlantIrrigationServiceApplicationKt</start-class>
+        <jupiter.version>5.8.0</jupiter.version>
+        <mockito.version>3.2.0</mockito.version>
     </properties>
     <dependencies>
         <dependency>
@@ -98,6 +100,18 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito.kotlin</groupId>
+            <artifactId>mockito-kotlin</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
