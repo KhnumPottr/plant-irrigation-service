@@ -2,7 +2,7 @@ package com.khnumpottr.plantirrigationservice.handler
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.khnumpottr.plantirrigationservice.domain.MessageData
-import com.khnumpottr.plantirrigationservice.domain.NodeData
+import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
 import mu.KotlinLogging
@@ -17,7 +17,7 @@ class WebClientHandler @Autowired constructor(private val service: MoistureLevel
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
         service.addWebSocketSession(session)
-        val messages = service.reportInitialMoistureLevel()
+        val messages = service.reportPlanterSummary()
         messages.forEach{
             session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(it)))
         }
@@ -35,7 +35,7 @@ class WebClientHandler @Autowired constructor(private val service: MoistureLevel
         LOG.info { data }
         when (data.messageType) {
             MessageTypes.IRRIGATION_ARRAY_DATA -> {
-                val message = service.getMoistureLevelHistory(data.nodeName)
+                val message = service.getMoistureLevelHistory(data.id)
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))
             }
             MessageTypes.SWITCH -> {
@@ -47,7 +47,7 @@ class WebClientHandler @Autowired constructor(private val service: MoistureLevel
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))
             }
             MessageTypes.UPDATE_PLANTER_DATA -> {
-                val message = service.updatePlanterDetails(data.payload as NodeData)
+                val message = service.updatePlanterDetails(data.payload as PlanterDetails)
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))
             }
             else -> {

@@ -1,6 +1,6 @@
 package com.khnumpottr.plantirrigationservice.dao
 
-import com.khnumpottr.plantirrigationservice.domain.NodeData
+import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
 import org.bson.codecs.pojo.annotations.BsonCreator
 import org.bson.codecs.pojo.annotations.BsonProperty
 import org.litote.kmongo.*
@@ -15,21 +15,21 @@ class ConnectedNodesDAO {
     private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoNodeData>("connected_Nodes")
 
-    fun insert(nodeData: NodeData) {
-        val existingNode = findAllNodes().filter { it.planterId == nodeData.planterId }
+    fun insert(planterDetails: PlanterDetails) {
+        val existingNode = findAllNodes().filter { it.planterId == planterDetails.planterId }
         if (existingNode.isEmpty()) {
-            collection.insertOne(MongoNodeData(nodeData))
+            collection.insertOne(MongoNodeData(planterDetails))
         }
     }
 
-    fun find(nodeName: String): NodeData? {
-        val found = collection.find(MongoNodeData :: planterId eq nodeName)
+    fun find(planterId: String): PlanterDetails? {
+        val found = collection.find(MongoNodeData :: planterId eq planterId)
             .map(MongoNodeData::build)
             .toList()
         return if(found.isEmpty()) null else found[0]
     }
 
-    fun update(planterData: NodeData): Boolean {
+    fun update(planterData: PlanterDetails): Boolean {
         val command = collection.updateOne(MongoNodeData :: planterId eq planterData.planterId, set(
             MongoNodeData::title setTo planterData.title,
             MongoNodeData::datePlanted setTo planterData.datePlanted,
@@ -40,7 +40,7 @@ class ConnectedNodesDAO {
         return command.matchedCount >= 1
     }
 
-    fun findAllNodes(): List<NodeData> {
+    fun findAllNodes(): List<PlanterDetails> {
         return collection.find()
             .map(MongoNodeData::build)
             .toList()
@@ -49,7 +49,7 @@ class ConnectedNodesDAO {
 }
 
 class MongoNodeData @BsonCreator constructor(
-    @BsonProperty("nodeName")
+    @BsonProperty("planterId")
     val planterId: String,
     @BsonProperty("title")
     val title: String?,
@@ -62,16 +62,16 @@ class MongoNodeData @BsonCreator constructor(
     @BsonProperty("plants")
     val plants: String?
 ) {
-    constructor(nodeData: NodeData) : this(
-        planterId = nodeData.planterId,
-        title = nodeData.title,
-        datePlanted = nodeData.datePlanted,
-        upperLimit = nodeData.upperLimit,
-        lowerLimit = nodeData.lowerLimit,
-        plants = nodeData.plants
+    constructor(planterDetails: PlanterDetails) : this(
+        planterId = planterDetails.planterId,
+        title = planterDetails.title,
+        datePlanted = planterDetails.datePlanted,
+        upperLimit = planterDetails.upperLimit,
+        lowerLimit = planterDetails.lowerLimit,
+        plants = planterDetails.plants
     )
 
-    fun build(): NodeData = NodeData(
+    fun build(): PlanterDetails = PlanterDetails(
         planterId = planterId,
         title = title,
         datePlanted = datePlanted,

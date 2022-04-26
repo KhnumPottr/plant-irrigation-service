@@ -2,15 +2,15 @@
   "_id": {
     "$oid": "6202e7d1f0297d97c164b1d4"
   },
-  "nodeName": "esp8622_harry"
+  "planterId": "esp8622_harry"
 },{
   "_id": {
     "$oid": "6202e968f0297d97c164b441"
   },
-  "nodeName": "esp8622_jessica"
+  "planterId": "esp8622_jessica"
 },{
   "_id": {
     "$oid": "62035ceaf0297d97c167470c"
   },
-  "nodeName": "esp8622_grace"
+  "planterId": "esp8622_grace"
 }]

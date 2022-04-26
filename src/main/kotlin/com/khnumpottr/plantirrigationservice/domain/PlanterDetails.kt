@@ -2,7 +2,7 @@ package com.khnumpottr.plantirrigationservice.domain
 
 import java.time.LocalDate
 
-data class NodeData(
+data class PlanterDetails(
     val planterId: String,
     val title: String? = null,
     val datePlanted: LocalDate? = null,

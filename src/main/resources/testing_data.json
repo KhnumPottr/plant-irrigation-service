@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "6203652af0297d97c167560b"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 41,
   "dateReceived": {
     "$date": "2022-02-09T17:54:30.890Z"
@@ -11,7 +11,7 @@
   "_id": {
     "$oid": "6203652bf0297d97c167560d"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 27,
   "dateReceived": {
     "$date": "2022-02-09T17:54:31.391Z"
@@ -20,7 +20,7 @@
   "_id": {
     "$oid": "6203652ef0297d97c167560f"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 54,
   "dateReceived": {
     "$date": "2022-02-09T17:54:34.501Z"
@@ -29,7 +29,7 @@
   "_id": {
     "$oid": "6203652ef0297d97c1675611"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 42,
   "dateReceived": {
     "$date": "2022-02-09T17:54:35.006Z"
@@ -38,7 +38,7 @@
   "_id": {
     "$oid": "6203733bf0297d97c1676bd0"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 25,
   "dateReceived": {
     "$date": "2022-02-09T18:54:31.805Z"
@@ -47,7 +47,7 @@
   "_id": {
     "$oid": "6203733ff0297d97c1676bd6"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 40,
   "dateReceived": {
     "$date": "2022-02-09T18:54:35.491Z"
@@ -56,7 +56,7 @@
   "_id": {
     "$oid": "6203814bf0297d97c167818a"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 25,
   "dateReceived": {
     "$date": "2022-02-09T19:54:31.534Z"
@@ -65,7 +65,7 @@
   "_id": {
     "$oid": "6203814ff0297d97c1678197"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 40,
   "dateReceived": {
     "$date": "2022-02-09T19:54:35.158Z"
@@ -74,7 +74,7 @@
   "_id": {
     "$oid": "62038f5bf0297d97c167974e"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 25,
   "dateReceived": {
     "$date": "2022-02-09T20:54:32.054Z"
@@ -83,7 +83,7 @@
   "_id": {
     "$oid": "62038f5ff0297d97c1679750"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 40,
   "dateReceived": {
     "$date": "2022-02-09T20:54:35.741Z"
@@ -92,7 +92,7 @@
   "_id": {
     "$oid": "62039d6bf0297d97c167ad0a"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 26,
   "dateReceived": {
     "$date": "2022-02-09T21:54:31.687Z"
@@ -101,7 +101,7 @@
   "_id": {
     "$oid": "62039d6ff0297d97c167ad15"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 40,
   "dateReceived": {
     "$date": "2022-02-09T21:54:35.287Z"
@@ -110,7 +110,7 @@
   "_id": {
     "$oid": "62043493f0297d97c167c7a6"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 44,
   "dateReceived": {
     "$date": "2022-02-10T08:39:31.127Z"
@@ -119,7 +119,7 @@
   "_id": {
     "$oid": "62043493f0297d97c167c7a8"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 30,
   "dateReceived": {
     "$date": "2022-02-10T08:39:31.629Z"
@@ -128,7 +128,7 @@
   "_id": {
     "$oid": "620434a5f0297d97c167c7c7"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 56,
   "dateReceived": {
     "$date": "2022-02-10T08:39:49.870Z"
@@ -137,7 +137,7 @@
   "_id": {
     "$oid": "620434a6f0297d97c167c7c9"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 43,
   "dateReceived": {
     "$date": "2022-02-10T08:39:50.374Z"
@@ -146,7 +146,7 @@
   "_id": {
     "$oid": "620450b4f0297d97c167f336"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T10:39:31.988Z"
@@ -155,7 +155,7 @@
   "_id": {
     "$oid": "620450c6f0297d97c167f34e"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 41,
   "dateReceived": {
     "$date": "2022-02-10T10:39:50.724Z"
@@ -164,7 +164,7 @@
   "_id": {
     "$oid": "62045ec4f0297d97c16808f4"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T11:39:32.064Z"
@@ -173,7 +173,7 @@
   "_id": {
     "$oid": "62045ed6f0297d97c1680912"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 41,
   "dateReceived": {
     "$date": "2022-02-10T11:39:50.804Z"
@@ -182,7 +182,7 @@
   "_id": {
     "$oid": "62046cd4f0297d97c1681eb8"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T12:39:32.144Z"
@@ -191,7 +191,7 @@
   "_id": {
     "$oid": "62046ce6f0297d97c1681ed6"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 40,
   "dateReceived": {
     "$date": "2022-02-10T12:39:50.883Z"
@@ -200,7 +200,7 @@
   "_id": {
     "$oid": "62047ae4f0297d97c1683474"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T13:39:32.225Z"
@@ -209,7 +209,7 @@
   "_id": {
     "$oid": "62047af6f0297d97c168348d"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 40,
   "dateReceived": {
     "$date": "2022-02-10T13:39:50.965Z"
@@ -218,7 +218,7 @@
   "_id": {
     "$oid": "620488f4f0297d97c1684a33"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T14:39:32.429Z"
@@ -227,7 +227,7 @@
   "_id": {
     "$oid": "62048907f0297d97c1684a51"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 40,
   "dateReceived": {
     "$date": "2022-02-10T14:39:51.044Z"
@@ -236,7 +236,7 @@
   "_id": {
     "$oid": "62049704f0297d97c1685ff7"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T15:39:32.505Z"
@@ -245,7 +245,7 @@
   "_id": {
     "$oid": "62049717f0297d97c1686015"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 39,
   "dateReceived": {
     "$date": "2022-02-10T15:39:51.243Z"
@@ -254,7 +254,7 @@
   "_id": {
     "$oid": "6204a514f0297d97c16875b2"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 28,
   "dateReceived": {
     "$date": "2022-02-10T16:39:32.282Z"
@@ -263,7 +263,7 @@
   "_id": {
     "$oid": "6204a527f0297d97c16875cb"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 39,
   "dateReceived": {
     "$date": "2022-02-10T16:39:51.417Z"
@@ -272,7 +272,7 @@
   "_id": {
     "$oid": "6204b324f0297d97c1688b71"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T17:39:32.452Z"
@@ -281,7 +281,7 @@
   "_id": {
     "$oid": "6204b337f0297d97c1688b8f"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 39,
   "dateReceived": {
     "$date": "2022-02-10T17:39:51.208Z"
@@ -290,7 +290,7 @@
   "_id": {
     "$oid": "6204c134f0297d97c168a135"
   },
-  "nodeName": "esp8622_harry",
+  "planterId": "esp8622_harry",
   "moisturePercentage": 29,
   "dateReceived": {
     "$date": "2022-02-10T18:39:32.422Z"
@@ -299,7 +299,7 @@
   "_id": {
     "$oid": "6204c147f0297d97c168a153"
   },
-  "nodeName": "esp8622_jessica",
+  "planterId": "esp8622_jessica",
   "moisturePercentage": 39,
   "dateReceived": {
     "$date": "2022-02-10T18:39:51.575Z"

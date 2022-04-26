@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 
 @JsonDeserialize
 data class NodeMessage(
-    @JsonProperty("nodeName")
-    val nodeName: String,
+    @JsonProperty("id")
+    val id: String,
     @JsonProperty("messageType")
     val messageType: String,
     @JsonProperty("payload")

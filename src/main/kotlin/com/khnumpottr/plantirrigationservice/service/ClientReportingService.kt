@@ -2,23 +2,19 @@ package com.khnumpottr.plantirrigationservice.service
 
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.MoistureReadingDAO
-import com.khnumpottr.plantirrigationservice.domain.IrrigationData
-import com.khnumpottr.plantirrigationservice.domain.MessageData
-import com.khnumpottr.plantirrigationservice.domain.NodeData
-import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
+import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
 import mu.KotlinLogging
-import org.springframework.web.socket.WebSocketSession
 
 class ClientReportingService(
     private val moistureReadingDAO: MoistureReadingDAO,
     private val connectedNodesDAO: ConnectedNodesDAO
 ) {
 
-    fun findPlanterDetails(planterId: String): NodeData? {
+    fun findPlanterDetails(planterId: String): PlanterDetails? {
         return connectedNodesDAO.find(planterId)
     }
 
-    fun updatePlanterDetails(planterData: NodeData){
+    fun updatePlanterDetails(planterData: PlanterDetails){
         connectedNodesDAO.update(planterData)
     }
 
