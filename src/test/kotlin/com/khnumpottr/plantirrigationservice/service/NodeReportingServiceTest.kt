@@ -89,7 +89,7 @@ class NodeReportingServiceTest {
                 MessageData(nodeName = "testNode", messageType = MessageTypes.DATA, payload = moistureLevel)
             val lowerLimit = 15
 
-            whenever(mockConnectedNodesDAO.find("testNode")).thenReturn(NodeData(nodeName = "testNode", lowerLimit = lowerLimit))
+            whenever(mockConnectedNodesDAO.find("testNode")).thenReturn(NodeData(planterId = "testNode", lowerLimit = lowerLimit))
 
             service.add(testNode.nodeName, sessionId)
             service.saveMoistureReading(sessionId, moistureReading)
@@ -108,7 +108,7 @@ class NodeReportingServiceTest {
                 MessageData(nodeName = "testNode", messageType = MessageTypes.DATA, payload = moistureLevel)
             val lowerLimit = 15
 
-            whenever(mockConnectedNodesDAO.find("testNode")).thenReturn(NodeData(nodeName = "testNode", lowerLimit = lowerLimit))
+            whenever(mockConnectedNodesDAO.find("testNode")).thenReturn(NodeData(planterId = "testNode", lowerLimit = lowerLimit))
 
             service.add(testNode.nodeName, sessionId)
             service.saveMoistureReading(sessionId, moistureReading)

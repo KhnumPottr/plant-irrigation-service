@@ -13,7 +13,6 @@ class NodeReportingService(
 
     private val activeNodes: HashMap<String, NodeSummaryData> = HashMap()
 
-    @Synchronized
     fun add(nodeName: String, sessionId: String) {
         ClientReportingService.LOG.info { "Adding new Node: $nodeName" }
         val newNode = NodeSummaryData(nodeName = nodeName)
@@ -21,13 +20,11 @@ class NodeReportingService(
         activeNodes[sessionId] = newNode
     }
 
-    @Synchronized
     fun remove(sessionId: String) {
         ClientReportingService.LOG.info { "node Removed new Node: ${activeNodes[sessionId]}" }
         activeNodes.remove(sessionId)
     }
 
-    @Synchronized
     fun get(): List<NodeSummaryData> {
         return activeNodes.toList().map { it.second }
     }

@@ -1,10 +1,9 @@
 package com.khnumpottr.plantirrigationservice.domain
 
-import org.bson.codecs.pojo.annotations.BsonProperty
 import java.time.LocalDate
 
 data class NodeData(
-    val nodeName: String,
+    val planterId: String,
     val title: String? = null,
     val datePlanted: LocalDate? = null,
     val upperLimit: Int? = null,

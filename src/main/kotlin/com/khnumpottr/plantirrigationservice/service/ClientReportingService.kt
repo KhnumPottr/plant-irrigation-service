@@ -9,10 +9,18 @@ import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import mu.KotlinLogging
 import org.springframework.web.socket.WebSocketSession
 
-class ClientReportingService() {
+class ClientReportingService(
+    private val moistureReadingDAO: MoistureReadingDAO,
+    private val connectedNodesDAO: ConnectedNodesDAO
+) {
 
-    private val moistureReadingDAO = MoistureReadingDAO()
-    private val connectedNodesDAO = ConnectedNodesDAO()
+    fun findPlanterDetails(planterId: String): NodeData? {
+        return connectedNodesDAO.find(planterId)
+    }
+
+    fun updatePlanterDetails(planterData: NodeData){
+        connectedNodesDAO.update(planterData)
+    }
 
     companion object {
         val LOG = KotlinLogging.logger {}

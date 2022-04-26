@@ -16,17 +16,28 @@ class ConnectedNodesDAO {
     private val collection = database.getCollection<MongoNodeData>("connected_Nodes")
 
     fun insert(nodeData: NodeData) {
-        val existingNode = findAllNodes().filter { it.nodeName == nodeData.nodeName }
+        val existingNode = findAllNodes().filter { it.planterId == nodeData.planterId }
         if (existingNode.isEmpty()) {
             collection.insertOne(MongoNodeData(nodeData))
         }
     }
 
     fun find(nodeName: String): NodeData? {
-        val found = collection.find(MongoNodeData :: nodeName eq nodeName)
+        val found = collection.find(MongoNodeData :: planterId eq nodeName)
             .map(MongoNodeData::build)
             .toList()
         return if(found.isEmpty()) null else found[0]
+    }
+
+    fun update(planterData: NodeData): Boolean {
+        val command = collection.updateOne(MongoNodeData :: planterId eq planterData.planterId, set(
+            MongoNodeData::title setTo planterData.title,
+            MongoNodeData::datePlanted setTo planterData.datePlanted,
+            MongoNodeData::upperLimit setTo planterData.upperLimit,
+            MongoNodeData::lowerLimit setTo planterData.lowerLimit,
+            MongoNodeData::plants setTo planterData.plants,
+        ))
+        return command.matchedCount >= 1
     }
 
     fun findAllNodes(): List<NodeData> {
@@ -39,7 +50,7 @@ class ConnectedNodesDAO {
 
 class MongoNodeData @BsonCreator constructor(
     @BsonProperty("nodeName")
-    val nodeName: String,
+    val planterId: String,
     @BsonProperty("title")
     val title: String?,
     @BsonProperty("datePlanted")
@@ -52,7 +63,7 @@ class MongoNodeData @BsonCreator constructor(
     val plants: String?
 ) {
     constructor(nodeData: NodeData) : this(
-        nodeName = nodeData.nodeName,
+        planterId = nodeData.planterId,
         title = nodeData.title,
         datePlanted = nodeData.datePlanted,
         upperLimit = nodeData.upperLimit,
@@ -61,7 +72,7 @@ class MongoNodeData @BsonCreator constructor(
     )
 
     fun build(): NodeData = NodeData(
-        nodeName = nodeName,
+        planterId = planterId,
         title = title,
         datePlanted = datePlanted,
         upperLimit = upperLimit,
