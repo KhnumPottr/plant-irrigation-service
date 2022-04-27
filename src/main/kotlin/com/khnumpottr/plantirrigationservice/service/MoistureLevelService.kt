@@ -1,5 +1,6 @@
 package com.khnumpottr.plantirrigationservice.service
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.MessageData
@@ -7,7 +8,9 @@ import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
 import com.khnumpottr.plantirrigationservice.domain.PlanterSummaryData
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import mu.KotlinLogging
+import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession
+import java.io.IOException
 
 //https://programmer.help/blogs/simple-message-broadcast-and-unicast-of-websocket-using-spring.html
 
@@ -23,19 +26,23 @@ open class MoistureLevelService {
 
     private var irrigationIsActive: Boolean = false
 
-    //TODO
     fun reportMoistureLevel(sessionId: String, messageData: MessageData) {
-//        nodeService.saveMoistureReading(sessionId, messageData)
-//        if (connectedClients.isNotEmpty()) {
-//            connectedClients.forEach { session ->
-//                val tm = TextMessage(jacksonObjectMapper().writeValueAsString(messageData))
-//                try {
-//                    session.value.sendMessage(tm)
-//                } catch (e: IOException) {
-//                    // After sending fails, you need to continue broadcasting to other people, so try to catch exceptions in the loop
-//                }
-//            }
-//        }
+        val planterSummaryData = PlanterSummaryData(
+            planterId = messageData.id,
+            moistureLevel = messageData.payload as Int,
+            dateReceived = messageData.dateReceived
+        )
+        nodeService.saveMoistureReading(sessionId, planterSummaryData)
+        if (connectedClients.isNotEmpty()) {
+            connectedClients.forEach { session ->
+                val tm = TextMessage(jacksonObjectMapper().writeValueAsString(messageData))
+                try {
+                    session.value.sendMessage(tm)
+                } catch (e: IOException) {
+                    // After sending fails, you need to continue broadcasting to other people, so try to catch exceptions in the loop
+                }
+            }
+        }
     }
 
     fun addDataNode(planterId: String, sessionId: String) = nodeService.add(planterId, sessionId)
@@ -44,18 +51,12 @@ open class MoistureLevelService {
 
     fun getActiveNodes(): List<PlanterSummaryData> = nodeService.get()
 
-    //TODO
-    fun irrigationAutoToggle(moistureLevel: Int) {
-//        MoistureLevelService.LOG.info { moistureLevel }
-//        if (moistureLevel < 15 && !irrigationIsActive) {
-//            MoistureLevelService.LOG.info { "Powering ON Irrigation" }
-//            irrigationIsActive = true
-//            irrigationToggle(true)
-//        } else if (moistureLevel > 60 && irrigationIsActive) {
-//            MoistureLevelService.LOG.info { "Powering OFF Irrigation" }
-//            irrigationIsActive = false
-//            irrigationToggle(false)
-//        }
+    fun irrigationThresholdCheck(session: WebSocketSession) {
+        val irrigationCheck = nodeService.irrigatingSessionTrigger(session.id)
+        if(irrigationCheck){
+            val irrigationMessage = MessageData(id = "server", messageType = MessageTypes.NODE_TRIGGER_IRRIGATION, payload = true)
+            session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(irrigationMessage)))
+        }
     }
 
     fun addWebSocketSession(session: WebSocketSession) {
@@ -68,42 +69,36 @@ open class MoistureLevelService {
         connectedClients[id] = session
     }
 
-    fun getPlanterDetails(planterId: String): MessageData?{
+    fun getPlanterDetails(planterId: String): MessageData? {
         val planterDetails = clientService.findPlanterDetails(planterId)
-        if(planterDetails != null){
-            return MessageData(id = planterDetails.planterId, messageType = MessageTypes.PLANTER_DATA, payload = planterDetails)
+        if (planterDetails != null) {
+            return MessageData(
+                id = planterDetails.planterId,
+                messageType = MessageTypes.PLANTER_DATA,
+                payload = planterDetails
+            )
         }
         return null
     }
 
-    fun updatePlanterDetails(planterData: PlanterDetails): MessageData{
+    fun updatePlanterDetails(planterData: PlanterDetails): MessageData {
         clientService.updatePlanterDetails(planterData)
         return MessageData(id = planterData.planterId, messageType = MessageTypes.PLANTER_DATA, payload = planterData)
     }
 
-    //TODO
     fun getMoistureLevelHistory(planterId: String): MessageData {
-//        val levels: ArrayList<IrrigationData> = ArrayList()
-//        val historicLevels = moistureReadingDAO.findAllMoistureReports(planterId)
-//        historicLevels.forEach { levels.add(IrrigationData(Integer.parseInt(it.payload.toString()), it.dateReceived)) }
-        return MessageData(id = planterId, messageType = MessageTypes.ARRAY_DATA, payload = null)
+        val history = nodeService.getPlanterHistoryReport(planterId)
+        return MessageData(id = planterId, messageType = MessageTypes.IRRIGATION_ARRAY_DATA, payload = history)
     }
 
 
-    fun reportPlanterSummary(): List<MessageData>{
+    fun reportPlanterSummary(): List<MessageData> {
         val messages: ArrayList<MessageData> = ArrayList()
         val activePlanters = nodeService.getPlanterListSummary()
-        activePlanters.forEach{ planter ->
-            messages.add(MessageData(id = planter.planterId, messageType = MessageTypes.DATA, payload = planter))
+        activePlanters.forEach { planter ->
+            messages.add(MessageData(id = planter.planterId, messageType = MessageTypes.PLANTER_DATA, payload = planter))
         }
         return messages
-    }
-
-    //TODO
-    fun irrigationToggle(toggle:Boolean): Boolean{
-        irrigationIsActive = toggle
-//        irrigationSession?.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(toggle)))
-        return irrigationIsActive
     }
 
     companion object {

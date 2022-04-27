@@ -38,10 +38,6 @@ class WebClientHandler @Autowired constructor(private val service: MoistureLevel
                 val message = service.getMoistureLevelHistory(data.id)
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))
             }
-            MessageTypes.SWITCH -> {
-                val toggle = service.irrigationToggle(data.payload as Boolean)
-                session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(data.copy(payload = toggle))))
-            }
             MessageTypes.PLANTER_DATA -> {
                 val message = service.getPlanterDetails(data.payload.toString())
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))

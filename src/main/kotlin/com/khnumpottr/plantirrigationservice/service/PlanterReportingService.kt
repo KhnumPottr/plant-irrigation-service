@@ -52,8 +52,10 @@ class PlanterReportingService(
         return planterSummaryList
     }
 
-    //TODO
-    // irrigate message
+    fun getPlanterHistoryReport(planterId: String): List<PlanterSummaryData>{
+        return moistureReadingDAO.findAllMoistureReports(planterId)
+    }
+
     fun irrigatingSessionTrigger(sessionId: String): Boolean {
         val reportingNode = activeNodes[sessionId]
         if (reportingNode?.moistureLevel != null) {
