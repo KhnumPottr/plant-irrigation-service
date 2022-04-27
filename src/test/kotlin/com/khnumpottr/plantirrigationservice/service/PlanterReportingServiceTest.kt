@@ -36,7 +36,7 @@ class PlanterReportingServiceTest {
 
         val result = service.get()
         assertEquals(result.size, 1)
-        assertEquals(result.contains(testNode), true)
+        assertEquals(result.any { it.planterId == testNode.planterId }, true)
     }
 
     @Test
