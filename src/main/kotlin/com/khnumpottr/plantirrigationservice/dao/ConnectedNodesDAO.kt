@@ -11,6 +11,7 @@ import java.time.LocalDate
 @Component
 class ConnectedNodesDAO {
 
+    //    private val client = KMongo.createClient("mongodb://mongoDatabase:27017")
     private val client = KMongo.createClient("mongodb://127.0.0.1:27017")
     private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoNodeData>("connected_Nodes")
@@ -23,20 +24,22 @@ class ConnectedNodesDAO {
     }
 
     fun find(planterId: String): PlanterDetails? {
-        val found = collection.find(MongoNodeData :: planterId eq planterId)
+        val found = collection.find(MongoNodeData::planterId eq planterId)
             .map(MongoNodeData::build)
             .toList()
-        return if(found.isEmpty()) null else found[0]
+        return if (found.isEmpty()) null else found[0]
     }
 
     fun update(planterData: PlanterDetails): Boolean {
-        val command = collection.updateOne(MongoNodeData :: planterId eq planterData.planterId, set(
-            MongoNodeData::title setTo planterData.title,
-            MongoNodeData::datePlanted setTo planterData.datePlanted,
-            MongoNodeData::upperLimit setTo planterData.upperLimit,
-            MongoNodeData::lowerLimit setTo planterData.lowerLimit,
-            MongoNodeData::plants setTo planterData.plants,
-        ))
+        val command = collection.updateOne(
+            MongoNodeData::planterId eq planterData.planterId, set(
+                MongoNodeData::title setTo planterData.title,
+                MongoNodeData::datePlanted setTo planterData.datePlanted,
+                MongoNodeData::upperLimit setTo planterData.upperLimit,
+                MongoNodeData::lowerLimit setTo planterData.lowerLimit,
+                MongoNodeData::plants setTo planterData.plants,
+            )
+        )
         return command.matchedCount >= 1
     }
 

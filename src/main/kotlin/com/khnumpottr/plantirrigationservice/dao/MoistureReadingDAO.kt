@@ -12,6 +12,7 @@ import java.time.LocalDateTime
 
 class MoistureReadingDAO {
 
+    //    private val client = KMongo.createClient("mongodb://mongoDatabase:27017")
     private val client = KMongo.createClient("mongodb://127.0.0.1:27017")
     private val database = client.getDatabase("plant-irrigation-service")
     private val collection = database.getCollection<MongoMoistureData>("moisture_reading")
@@ -24,17 +25,18 @@ class MoistureReadingDAO {
         return collection.find(
             and(
                 MongoMoistureData::planterId eq planterId,
-                MongoMoistureData::dateReceived gte LocalDateTime.now().minusDays(5)
             )
         )
             .sort(ascending(MongoMoistureData::dateReceived))
+            .limit(20)
             .map(MongoMoistureData::build)
             .toList()
     }
 
-    fun findRecentReporting(planterId: String): PlanterSummaryData?{
-        return collection.find(and(
-            MongoMoistureData::planterId eq planterId,
+    fun findRecentReporting(planterId: String): PlanterSummaryData? {
+        return collection.find(
+            and(
+                MongoMoistureData::planterId eq planterId,
             )
         )
             .sort(descending(MongoMoistureData::dateReceived))

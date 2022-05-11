@@ -45,14 +45,15 @@ class PlanterReportingService(
                 PlanterSummaryData(
                     planterId = planter.planterId,
                     title = planter.title,
-                    moistureLevel = moistureReading?.moistureLevel
+                    moistureLevel = moistureReading?.moistureLevel,
+                    irrigating = moistureReading?.irrigating ?: false
                 )
             )
         }
         return planterSummaryList
     }
 
-    fun getPlanterHistoryReport(planterId: String): List<PlanterSummaryData>{
+    fun getPlanterHistoryReport(planterId: String): List<PlanterSummaryData> {
         return moistureReadingDAO.findAllMoistureReports(planterId)
     }
 
