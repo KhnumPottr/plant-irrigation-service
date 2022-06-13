@@ -1,13 +1,16 @@
 package com.khnumpottr.plantirrigationservice.service
 
+import com.khnumpottr.plantirrigationservice.dao.CommandQueueDAO
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.MoistureReadingDAO
+import com.khnumpottr.plantirrigationservice.domain.Command
 import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
 import com.khnumpottr.plantirrigationservice.domain.PlanterSummaryData
 
 class PlanterReportingService(
     private val moistureReadingDAO: MoistureReadingDAO,
-    private val connectedNodesDAO: ConnectedNodesDAO
+    private val connectedNodesDAO: ConnectedNodesDAO,
+    private val commandQueueDAO: CommandQueueDAO
 ) {
 
     private val activeNodes: HashMap<String, PlanterSummaryData> = HashMap()
@@ -38,17 +41,18 @@ class PlanterReportingService(
 
     fun getPlanterListSummary(): List<PlanterSummaryData> {
         val planterSummaryList = ArrayList<PlanterSummaryData>()
-        val planterDetailsList = connectedNodesDAO.findAllNodes()
-        planterDetailsList.forEach { planter ->
+        connectedNodesDAO.findAllNodes()?.forEach { planter ->
             val moistureReading = moistureReadingDAO.findRecentReporting(planter.planterId)
-            planterSummaryList.add(
-                PlanterSummaryData(
-                    planterId = planter.planterId,
-                    title = planter.title,
-                    moistureLevel = moistureReading?.moistureLevel,
-                    irrigating = moistureReading?.irrigating ?: false
+            if (moistureReading != null) {
+                planterSummaryList.add(
+                    PlanterSummaryData(
+                        planterId = planter.planterId,
+                        title = planter.title,
+                        moistureLevel = moistureReading.moistureLevel,
+                        irrigating = moistureReading.irrigating ?: false
+                    )
                 )
-            )
+            }
         }
         return planterSummaryList
     }
@@ -69,9 +73,7 @@ class PlanterReportingService(
     }
 
 
-    //TODO
-    // Sleep Method
-
-    //TODO
-    // Stay Awake Method
+    fun getQueueCommands(planterId: String): List<Command>{
+        return commandQueueDAO.findAll(planterId = planterId)
+    }
 }

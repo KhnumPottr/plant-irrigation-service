@@ -1,5 +1,6 @@
 package com.khnumpottr.plantirrigationservice.handler
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import com.khnumpottr.plantirrigationservice.service.MoistureLevelService
@@ -13,6 +14,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler
 class NodeDataHandler @Autowired constructor(private val service: MoistureLevelService) : TextWebSocketHandler() {
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
+
         LOG.info { "Node Connected" }
     }
 
@@ -27,6 +29,12 @@ class NodeDataHandler @Autowired constructor(private val service: MoistureLevelS
             MessageTypes.NODE_NEW_CONNECTION -> {
                 LOG.info { "New node connected ${data.id} - ${session.localAddress}" }
                 service.addDataNode(data.id, session.id)
+                val messageCommands = service.retrievePlanterCommand(data.id)
+                if(messageCommands.isNotEmpty()){
+                    messageCommands.forEach {
+                        session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(it)))
+                    }
+                }
             }
             MessageTypes.NODE_DATA_REPORT -> {
                 service.reportMoistureLevel(session.id,data)

@@ -18,9 +18,10 @@ class WebClientHandler @Autowired constructor(private val service: MoistureLevel
     override fun afterConnectionEstablished(session: WebSocketSession) {
         service.addWebSocketSession(session)
         val messages = service.reportPlanterSummary()
-        println(messages)
-        messages.forEach {
-            session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(it)))
+        if(messages.isNotEmpty()){
+            messages.forEach {
+                session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(it)))
+            }
         }
         LOG.info { "Client Connected" }
     }
@@ -44,10 +45,12 @@ class WebClientHandler @Autowired constructor(private val service: MoistureLevel
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))
             }
             MessageTypes.UPDATE_PLANTER_DATA -> {
-                val payload = data.payload
                 val message =
                     service.updatePlanterDetails(PlanterDetails.buildFromLHM(data.payload as LinkedHashMap<String, Any>))
                 session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(message)))
+            }
+            MessageTypes.COMMAND -> {
+                service.saveClientCommand(data.id, data.payload.toString())
             }
             else -> {
                 LOG.error { "Message payload unknown, unable to process" }

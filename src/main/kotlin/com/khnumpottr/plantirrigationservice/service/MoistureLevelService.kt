@@ -1,11 +1,14 @@
 package com.khnumpottr.plantirrigationservice.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.khnumpottr.plantirrigationservice.dao.CommandQueueDAO
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.MoistureReadingDAO
+import com.khnumpottr.plantirrigationservice.domain.Command
 import com.khnumpottr.plantirrigationservice.domain.MessageData
 import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
 import com.khnumpottr.plantirrigationservice.domain.PlanterSummaryData
+import com.khnumpottr.plantirrigationservice.domain.enums.CommandType
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import mu.KotlinLogging
 import org.springframework.web.socket.TextMessage
@@ -18,13 +21,12 @@ open class MoistureLevelService {
 
     private val moistureReadingDAO = MoistureReadingDAO()
     private val connectedNodesDAO = ConnectedNodesDAO()
+    private val commandQueueDAO = CommandQueueDAO()
 
-    private val nodeService = PlanterReportingService(moistureReadingDAO, connectedNodesDAO)
-    private val clientService = ClientReportingService(moistureReadingDAO, connectedNodesDAO)
+    private val planterService = PlanterReportingService(moistureReadingDAO, connectedNodesDAO, commandQueueDAO)
+    private val clientService = ClientReportingService(moistureReadingDAO, connectedNodesDAO, commandQueueDAO)
 
     private var connectedClients: HashMap<String, WebSocketSession> = HashMap<String, WebSocketSession>()
-
-    private var irrigationIsActive: Boolean = false
 
     fun reportMoistureLevel(sessionId: String, messageData: MessageData) {
         val planterSummaryData = PlanterSummaryData(
@@ -32,7 +34,7 @@ open class MoistureLevelService {
             moistureLevel = messageData.payload as Int,
             dateReceived = messageData.dateReceived
         )
-        nodeService.saveMoistureReading(sessionId, planterSummaryData)
+        planterService.saveMoistureReading(sessionId, planterSummaryData)
         if (connectedClients.isNotEmpty()) {
             connectedClients.forEach { session ->
                 val tm = TextMessage(jacksonObjectMapper().writeValueAsString(messageData))
@@ -45,14 +47,14 @@ open class MoistureLevelService {
         }
     }
 
-    fun addDataNode(planterId: String, sessionId: String) = nodeService.add(planterId, sessionId)
+    fun addDataNode(planterId: String, sessionId: String) = planterService.add(planterId, sessionId)
 
-    fun removeDataNode(sessionId: String) = nodeService.remove(sessionId)
+    fun removeDataNode(sessionId: String) = planterService.remove(sessionId)
 
-    fun getActiveNodes(): List<PlanterSummaryData> = nodeService.get()
+    fun getActiveNodes(): List<PlanterSummaryData> = planterService.get()
 
     fun irrigationThresholdCheck(session: WebSocketSession) {
-        val irrigationCheck = nodeService.irrigatingSessionTrigger(session.id)
+        val irrigationCheck = planterService.irrigatingSessionTrigger(session.id)
         if(irrigationCheck){
             val irrigationMessage = MessageData(id = "server", messageType = MessageTypes.NODE_TRIGGER_IRRIGATION, payload = true)
             session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(irrigationMessage)))
@@ -87,16 +89,46 @@ open class MoistureLevelService {
     }
 
     fun getMoistureLevelHistory(planterId: String): MessageData {
-        val history = nodeService.getPlanterHistoryReport(planterId)
+        val history = planterService.getPlanterHistoryReport(planterId)
         return MessageData(id = planterId, messageType = MessageTypes.IRRIGATION_ARRAY_DATA, payload = history)
     }
 
 
     fun reportPlanterSummary(): List<MessageData> {
         val messages: ArrayList<MessageData> = ArrayList()
-        val activePlanters = nodeService.getPlanterListSummary()
-        activePlanters.forEach { planter ->
-            messages.add(MessageData(id = planter.planterId, messageType = MessageTypes.PLANTER_DATA, payload = planter))
+        val activePlanters = planterService.getPlanterListSummary()
+        if(activePlanters.isNotEmpty()) {
+            activePlanters.forEach { planter ->
+                messages.add(
+                    MessageData(
+                        id = planter.planterId,
+                        messageType = MessageTypes.PLANTER_DATA,
+                        payload = planter
+                    )
+                )
+            }
+        }
+        return messages
+    }
+
+    fun saveClientCommand(planterId: String, payload: String){
+        val commandType = CommandType.get(payload)
+        clientService.saveIssuedCommand(planterId, commandType)
+    }
+
+    fun retrievePlanterCommand(planterId: String): List<MessageData>{
+        val messages: ArrayList<MessageData> = ArrayList()
+        val commands = planterService.getQueueCommands(planterId)
+        if(commands.isNotEmpty()){
+            commands.forEach { command ->
+                messages.add(
+                    MessageData(
+                        id = "SERVER",
+                        messageType =  MessageTypes.COMMAND,
+                        payload = command
+                    )
+                )
+            }
         }
         return messages
     }

@@ -1,5 +1,6 @@
 package com.khnumpottr.plantirrigationservice.service
 
+import com.khnumpottr.plantirrigationservice.dao.CommandQueueDAO
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.MoistureReadingDAO
 import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
@@ -19,12 +20,13 @@ class PlanterReportingServiceTest {
 
     private val mockMoistureReadingDAO = mock<MoistureReadingDAO>()
     private val mockConnectedNodesDAO = mock<ConnectedNodesDAO>()
+    private val mockCommandQueueDAO = mock<CommandQueueDAO>()
 
-    private var service: PlanterReportingService = PlanterReportingService(mockMoistureReadingDAO, mockConnectedNodesDAO)
+    private var service: PlanterReportingService = PlanterReportingService(mockMoistureReadingDAO, mockConnectedNodesDAO, mockCommandQueueDAO)
 
     @BeforeEach
     fun setup() {
-        service = PlanterReportingService(mockMoistureReadingDAO, mockConnectedNodesDAO)
+        service = PlanterReportingService(mockMoistureReadingDAO, mockConnectedNodesDAO, mockCommandQueueDAO)
     }
 
     @Test

@@ -17,8 +17,8 @@ class ConnectedNodesDAO {
     private val collection = database.getCollection<MongoNodeData>("connected_Nodes")
 
     fun insert(planterDetails: PlanterDetails) {
-        val existingNode = findAllNodes().filter { it.planterId == planterDetails.planterId }
-        if (existingNode.isEmpty()) {
+        val existingNode = findAllNodes()?.filter { it.planterId == planterDetails.planterId }
+        if (existingNode == null || existingNode.isEmpty()) {
             collection.insertOne(MongoNodeData(planterDetails))
         }
     }
@@ -43,10 +43,8 @@ class ConnectedNodesDAO {
         return command.matchedCount >= 1
     }
 
-    fun findAllNodes(): List<PlanterDetails> {
-        return collection.find()
-            .map(MongoNodeData::build)
-            .toList()
+    fun findAllNodes(): List<PlanterDetails>? {
+        return collection.find().map(MongoNodeData::build).toList()
     }
 
 }
