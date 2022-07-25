@@ -31,6 +31,11 @@ class PlanterReportingService(
         return activeNodes.toList().map { it.second }
     }
 
+    fun getBySessionID(sessionId: String): PlanterSummaryData {
+        val activeNode = activeNodes.toList().first { it.first == sessionId }
+        return activeNode.second
+    }
+
     fun saveMoistureReading(sessionId: String, planterSummaryData: PlanterSummaryData) {
         moistureReadingDAO.insert(planterSummaryData)
         val reportingNode = activeNodes[sessionId]
@@ -49,7 +54,7 @@ class PlanterReportingService(
                         planterId = planter.planterId,
                         title = planter.title,
                         moistureLevel = moistureReading.moistureLevel,
-                        irrigating = moistureReading.irrigating ?: false
+                        irrigating = moistureReading.irrigating
                     )
                 )
             }
@@ -65,7 +70,7 @@ class PlanterReportingService(
         val reportingNode = activeNodes[sessionId]
         if (reportingNode?.moistureLevel != null) {
             val reportingNodeDetails = connectedNodesDAO.find(reportingNode.planterId)
-            if (reportingNodeDetails != null && reportingNodeDetails.lowerLimit!! > reportingNode.moistureLevel) {
+            if (reportingNodeDetails?.lowerLimit != null && reportingNodeDetails.lowerLimit > reportingNode.moistureLevel) {
                 return true
             }
         }

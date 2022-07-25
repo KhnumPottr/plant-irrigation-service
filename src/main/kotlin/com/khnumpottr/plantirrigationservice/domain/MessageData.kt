@@ -14,7 +14,7 @@ data class MessageData(
 ){
     companion object{
         fun build(message: TextMessage): MessageData{
-            val data = ObjectMapper().readValue<NodeMessage>(message.payload)
+            val data = ObjectMapper().readValue<PlanterMessage>(message.payload)
             return MessageData(
                 id = data.id,
                 messageType = MessageTypes.get(data.messageType),

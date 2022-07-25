@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 
 @JsonDeserialize
-data class NodeMessage(
+data class PlanterCommandMessage(
     @JsonProperty("id")
     val id: String,
-    @JsonProperty("messageType")
-    val messageType: String,
+    @JsonProperty("commandType")
+    val commandType: String,
     @JsonProperty("payload")
     val payload: Any?,
 )

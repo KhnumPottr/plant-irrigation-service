@@ -4,10 +4,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.khnumpottr.plantirrigationservice.dao.CommandQueueDAO
 import com.khnumpottr.plantirrigationservice.dao.ConnectedNodesDAO
 import com.khnumpottr.plantirrigationservice.dao.MoistureReadingDAO
-import com.khnumpottr.plantirrigationservice.domain.Command
-import com.khnumpottr.plantirrigationservice.domain.MessageData
-import com.khnumpottr.plantirrigationservice.domain.PlanterDetails
-import com.khnumpottr.plantirrigationservice.domain.PlanterSummaryData
+import com.khnumpottr.plantirrigationservice.domain.*
 import com.khnumpottr.plantirrigationservice.domain.enums.CommandType
 import com.khnumpottr.plantirrigationservice.domain.enums.MessageTypes
 import mu.KotlinLogging
@@ -51,13 +48,34 @@ open class MoistureLevelService {
 
     fun removeDataNode(sessionId: String) = planterService.remove(sessionId)
 
-    fun getActiveNodes(): List<PlanterSummaryData> = planterService.get()
+    private fun getActiveNodes(sessionId: String): PlanterSummaryData = planterService.getBySessionID(sessionId)
 
     fun irrigationThresholdCheck(session: WebSocketSession) {
         val irrigationCheck = planterService.irrigatingSessionTrigger(session.id)
-        if(irrigationCheck){
-            val irrigationMessage = MessageData(id = "server", messageType = MessageTypes.NODE_TRIGGER_IRRIGATION, payload = true)
-            session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(irrigationMessage)))
+        if (irrigationCheck) {
+            val maxIrrigationValue = getPlanterMaxIrrigation(getActiveNodes(session.id).planterId)
+            session.sendMessage(
+                TextMessage(
+                    jacksonObjectMapper().writeValueAsString(
+                        CommandMessage(
+                            id = "server",
+                            commandType = CommandType.IRRIGATE_MAX.commandNumber,
+                            payload = maxIrrigationValue
+                        )
+                    )
+                )
+            )
+            session.sendMessage(
+                TextMessage(
+                    jacksonObjectMapper().writeValueAsString(
+                        CommandMessage(
+                            id = "server",
+                            commandType = CommandType.IRRIGATE.commandNumber,
+                            payload = null
+                        )
+                    )
+                )
+            )
         }
     }
 
@@ -97,7 +115,7 @@ open class MoistureLevelService {
     fun reportPlanterSummary(): List<MessageData> {
         val messages: ArrayList<MessageData> = ArrayList()
         val activePlanters = planterService.getPlanterListSummary()
-        if(activePlanters.isNotEmpty()) {
+        if (activePlanters.isNotEmpty()) {
             activePlanters.forEach { planter ->
                 messages.add(
                     MessageData(
@@ -111,26 +129,38 @@ open class MoistureLevelService {
         return messages
     }
 
-    fun saveClientCommand(planterId: String, payload: String){
+    fun saveClientCommand(planterId: String, payload: String) {
         val commandType = CommandType.get(payload)
         clientService.saveIssuedCommand(planterId, commandType)
     }
 
-    fun retrievePlanterCommand(planterId: String): List<MessageData>{
-        val messages: ArrayList<MessageData> = ArrayList()
+    fun retrievePlanterCommand(planterId: String): List<CommandMessage> {
+        val messages: ArrayList<CommandMessage> = ArrayList()
         val commands = planterService.getQueueCommands(planterId)
-        if(commands.isNotEmpty()){
+        if (commands.isNotEmpty()) {
             commands.forEach { command ->
+                var payload: Any? = null
+                if (command.issuedCommand == CommandType.IRRIGATE_MAX) {
+                    payload = getPlanterMaxIrrigation(planterId)
+                }
                 messages.add(
-                    MessageData(
+                    CommandMessage(
                         id = "SERVER",
-                        messageType =  MessageTypes.COMMAND,
-                        payload = command
+                        commandType = command.issuedCommand.commandNumber,
+                        payload = payload
                     )
                 )
             }
         }
         return messages
+    }
+
+    private fun getPlanterMaxIrrigation(planterId: String): Int {
+        val planterDetails = clientService.findPlanterDetails(planterId)
+        if (planterDetails?.upperLimit != null) {
+            return planterDetails.upperLimit
+        }
+        return 0
     }
 
     companion object {

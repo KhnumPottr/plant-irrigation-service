@@ -29,9 +29,12 @@ class NodeDataHandler @Autowired constructor(private val service: MoistureLevelS
             MessageTypes.NODE_NEW_CONNECTION -> {
                 LOG.info { "New node connected ${data.id} - ${session.localAddress}" }
                 service.addDataNode(data.id, session.id)
+            }
+            MessageTypes.COMMAND_REQUEST -> {
                 val messageCommands = service.retrievePlanterCommand(data.id)
                 if(messageCommands.isNotEmpty()){
                     messageCommands.forEach {
+                        LOG.info { it }
                         session.sendMessage(TextMessage(jacksonObjectMapper().writeValueAsString(it)))
                     }
                 }

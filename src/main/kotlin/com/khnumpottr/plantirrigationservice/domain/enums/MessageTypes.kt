@@ -13,6 +13,8 @@ enum class MessageTypes {
     IRRIGATION_DATA,
     COMMAND,
     COMMAND_REQUEST,
+    COMMAND_EXECUTED,
+    SLEEPING,
     UNKNOWN;
 
     companion object {
